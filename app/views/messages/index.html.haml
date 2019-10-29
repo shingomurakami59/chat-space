@@ -1,0 +1,29 @@
+.wrapper
+  .content-left
+    .user-name
+      %p ログインユーザー名
+      %i.fa fa-edit
+      %i.fa fa-cog
+
+    - for i in 1..3 do
+      .groups
+        %p.groups__name グループ一覧
+        %p.groups__message 最新チャット内容
+
+  .content-right
+    .group
+      %p.group__name グループ名
+      %p.group__member MEMBER: メンバー名
+      %p.group__btn Edit
+
+    - for i in 1..3 do
+      .chat
+        %p.chat__user 各ユーザー名
+        %p.chat__date 各チャット送信日時
+        %p.chat__content 各チャット内容
+
+
+      .submit
+        %p.submit__content type a message
+        %i.fa fa-file-image-o
+      %p.bottom-btn Send
