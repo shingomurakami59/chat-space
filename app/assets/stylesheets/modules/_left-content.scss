@@ -1,0 +1,66 @@
+.content-left {
+  width: 300px;
+  height: 100vh;
+  color: #FFFFFF;
+  float: left;
+  position: relative;
+  background-color: black;
+}
+
+.user {
+  background-color: black;
+  padding: 35px 20px;
+  font-weight: bold;
+  font-size: 16px;
+  &__name {
+  color: $white;
+  }
+}
+
+.fa {
+  position: absolute;
+
+  &-edit{
+    left: 250px;
+    top: 40px;
+    color: $white;
+  }
+  &-cog {
+    left: 270px;
+    top: 40px;
+    color: $white;
+  }
+  &-file-image-o {
+    right: 170px;
+    top: 40px;
+    color: gray;
+    cursor: pointer;
+  }
+}
+
+.group-wrapper {
+  height: calc(100vh - 94px);
+  overflow: auto;
+}
+
+.groups {
+  padding: 20px 20px 40px 20px;
+  color: $white;
+  text-decoration: none;
+  border: solid 1px;
+  border-radius: 25px;
+  background-color: #2f3e51;
+  width: 250px;
+  margin-bottom: 10px;
+  height: 30px;
+  &:hover {
+    opacity: 0.5;
+  }
+  &__name {
+    font-size: 15px;
+    padding-bottom: 5px;
+  }
+  &__message {
+    font-size: 11px;
+  }
+}
