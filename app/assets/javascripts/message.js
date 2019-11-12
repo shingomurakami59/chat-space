@@ -19,9 +19,8 @@ $(function(){
                 </div>`;
     return html;
   }
-  $('#new_message').on(submit, function(e){
+  $('#new_message').on('submit', function(e){
     e.preventDefault()
-    // console.logを用いてイベント発火しているか確認
     var formData = new FormData(this);
     var url = $(this).attr('action')
     $.ajax({
@@ -44,4 +43,37 @@ $(function(){
       $('.form__submit').prop('disabled', false);
     })
   })
+  $(function(){
+    if(location.href.match(/\/groups\/\d+\/messages/)){
+      setInterval(reloadMessages, 1000);
+    }
+  });
+  function reloadMessages() {
+    if($('.message')[0]) {
+      var last_message_id = $('.message:last').attr('data-id');
+      var group_id = $('.message').attr('data-group-id');
+    } else {
+      var last_message_id = 0;
+    }
+    url = '/groups/' + group_id + '/api/messages';
+
+    $.ajax({
+      url: url,
+      type: "GET",
+      data: {id: last_message_id, group: group_id},
+      dataType: 'json'
+    })
+    .done(function(messages) {
+      if(messages != "null") {
+        $.each(messages, function(i, message){
+          var html = buildHTML(message);
+          $('.messages').append(html);
+          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
+        });
+      }
+    })
+    .fail(function() {
+      alert('自動更新に失敗しました')
+    });
+  }
 });
