@@ -42,9 +42,9 @@ $(function(){
       alert('メッセージを入力して下さい');
       $('.form__submit').prop('disabled', false);
     })
-  })
     .fail(function() {
       alert('自動更新に失敗しました')
     });
+  })
 })
   
