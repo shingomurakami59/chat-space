@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    @users = User.where('name LIKE(?)', "%#{params[:keyword]}%").where.not(id: params[:group_users_id])
+    return nil if params[:keyword] == ""
+    @users = User.where(['name LIKE ?', "%#{params[:keyword]}%"] ).where.not(id: current_user.id).limit(10)
     respond_to do |format|
       format.html
       format.json
@@ -17,6 +18,8 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+  
+  private
   
   def user_params
     params.require(:user).permit(:name, :email)
