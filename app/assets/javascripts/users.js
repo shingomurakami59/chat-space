@@ -32,6 +32,7 @@ $(function() {
 // イベント発火、keyupメソッド
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
+    var href = window.location.href
     $.ajax({
       type: 'GET',
       url: '/users',
@@ -64,7 +65,7 @@ $(function() {
       var userId = $(this).data('user-id');
       var userName = $(this).data('user-name');
       addUser(userId,userName);
-      $(this).parent().remove();
+      $(this).parent()[0].remove();
     });
       // 削除ボタンクリック時の処理
     $(document).on("click", ".user-search-remove", function () {
